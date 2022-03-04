@@ -604,6 +604,7 @@ class Form(Node):
         task.automation.data[f"_{self._name}_validated"] = dict(
             user_id=request.user.id, time=now().isoformat()
         )
+        task.automation.data.update(form.cleaned_data)
         task.automation.save()
         task.requires_interaction = False
         task.save()
